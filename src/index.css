@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-dark-blue: #09122c;
+  --color-white: #fffafa;
+}
+
+html,
+body {
+  font-family: "Instrument Sans", sans-serif;
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+  padding: 10px;
+}
+
+@layer {
+  .no-scrollbar::-webkit-scrollbar {
+    scrollbar-width: none;
+  }
+}
