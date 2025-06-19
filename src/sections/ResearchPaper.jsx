@@ -4,34 +4,92 @@ import data from "../assets/dummy_data.json";
 function ResearchPaper() {
   const [showRelated, setShowRelated] = useState(null);
   const [sortDirection, setSortDirection] = useState("none");
+  const [sortConfig, setSortConfig] = useState({
+    field: null,
+    direction: "none",
+  });
+
+  function toggleSort(field) {
+    setSortConfig((prev) => {
+      if (prev.field !== field) {
+        return { field, direction: "asc" };
+      } else if (prev.direction === "asc") {
+        return { field, direction: "desc" };
+      } else {
+        return { field: null, direction: "none" };
+      }
+    });
+  }
 
   const sortedPapers = [...data.results.research_papers];
 
-  function toggleSort() {
-    setSortDirection((prev) =>
-      prev === "none" ? "asc" : prev === "asc" ? "desc" : "none"
-    );
+  if (sortConfig.direction !== "none") {
+    sortedPapers.sort((a, b) => {
+      const valA =
+        sortConfig.field === "citation"
+          ? a.citation_count
+          : new Date(a.published_date);
+      const valB =
+        sortConfig.field === "citation"
+          ? b.citation_count
+          : new Date(b.published_date);
+
+      return sortConfig.direction === "asc" ? valA - valB : valB - valA;
+    });
   }
 
-  let sortIcon;
+  let sortIcon, buttonStyle;
   if (sortDirection === "asc") {
     sortedPapers.sort((a, b) => a.citation_count - b.citation_count);
-    sortIcon = <i className="bx bx-sort-up p-1 bg-white text-dark-blue" />;
+    sortIcon = <i className="bx bx-up-arrow-alt text-xl" />;
+    buttonStyle = "bg-white text-dark-blue";
   } else if (sortDirection === "desc") {
     sortedPapers.sort((a, b) => b.citation_count - a.citation_count);
-    sortIcon = <i className="bx bx-sort-down p-1 bg-white text-dark-blue" />;
+    sortIcon = <i className="bx bx-down-arrow-alt text-xl" />;
+    buttonStyle = "bg-white text-dark-blue";
   } else {
     sortedPapers;
-    sortIcon = <i className="bx bx-sort-up p-1" />;
+    sortIcon = <i className="bx bx-up-arrow-alt text-xl" />;
   }
 
   return (
     <>
-      <div
-        className="ml-auto border border-white w-fit my-2.5 text-3xl rounded-lg flex justify-end items-center overflow-clip"
-        onClick={toggleSort}
-      >
-        {sortIcon}
+      <div className="flex justify-end gap-4">
+        <div
+          className={`flex w-fit my-2.5 items-center gap-2 border border-white rounded py-1 px-2 cursor-pointer transition-colors ${
+            sortConfig.field === "citation" ? "bg-white text-dark-blue" : ""
+          }`}
+          onClick={() => toggleSort("citation")}
+        >
+          <p>Pages</p>
+          {sortConfig.field === "citation" && (
+            <i
+              className={`bx ${
+                sortConfig.direction === "asc"
+                  ? "bx-up-arrow-alt"
+                  : "bx-down-arrow-alt"
+              } text-xl`}
+            />
+          )}
+        </div>
+
+        <div
+          className={`flex w-fit my-2.5 items-center gap-2 border border-white rounded py-1 px-2 cursor-pointer transition-colors ${
+            sortConfig.field === "date" ? "bg-white text-dark-blue" : ""
+          }`}
+          onClick={() => toggleSort("date")}
+        >
+          <p>Published On</p>
+          {sortConfig.field === "date" && (
+            <i
+              className={`bx ${
+                sortConfig.direction === "asc"
+                  ? "bx-up-arrow-alt"
+                  : "bx-down-arrow-alt"
+              } text-xl`}
+            />
+          )}
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {sortedPapers.map((research_paper, index) => (
