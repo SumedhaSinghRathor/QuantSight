@@ -1,8 +1,9 @@
-import { use, useState } from "react";
+import { useState } from "react";
+import Related from "../components/Related";
 import data from "../assets/dummy_data.json";
 
 function ResearchPaper() {
-  const [showRelated, setShowRelated] = useState(null);
+  const [selectRelated, setSelectRelated] = useState(null);
   const [expandedAbstracts, setExpandedAbstracts] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     field: null,
@@ -88,9 +89,11 @@ function ResearchPaper() {
           <div
             key={index}
             className={`w-fit flex flex-col gap-2 items-start p-6 hover:bg-white/5 rounded transition-colors ${
-              showRelated === index ? "bg-white/10 hover:bg-white/10" : ""
+              selectRelated === index ? "bg-white/10 hover:bg-white/10" : ""
             }`}
-            onClick={() => setShowRelated(showRelated === index ? null : index)}
+            onClick={() =>
+              setSelectRelated(selectRelated === index ? null : index)
+            }
           >
             <div className="bg-amber-50 aspect-[17/22] w-45 mx-auto"></div>
             <p className="line-clamp-2 font-bold text-xl">
@@ -134,6 +137,7 @@ function ResearchPaper() {
           </div>
         ))}
       </div>
+      <Related selectRelated={selectRelated} />
     </>
   );
 }

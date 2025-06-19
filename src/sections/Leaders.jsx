@@ -1,8 +1,9 @@
 import { useState } from "react";
 import data from "../assets/dummy_data.json";
+import Related from "../components/Related";
 
 function Leaders() {
-  const [showRelated, setShowRelated] = useState(null);
+  const [selectRelated, setSelectRelated] = useState(null);
   const [showDirection, setShowDirection] = useState("none");
 
   const sortedCitation = [...data.results.leaders];
@@ -41,9 +42,11 @@ function Leaders() {
           <div
             key={index}
             className={`flex items-center shrink-0 gap-8 p-4 hover:bg-white/5 rounded transition-colors ${
-              showRelated === index ? "bg-white/10 hover:bg-white/10" : ""
+              selectRelated === index ? "bg-white/10 hover:bg-white/10" : ""
             }`}
-            onClick={() => setShowRelated(showRelated === index ? null : index)}
+            onClick={() =>
+              setSelectRelated(selectRelated === index ? null : index)
+            }
           >
             <div className="size-30 bg-amber-50 rounded-full"></div>
             <div>
@@ -64,6 +67,7 @@ function Leaders() {
           </div>
         ))}
       </div>
+      <Related selectRelated={selectRelated} />
     </>
   );
 }

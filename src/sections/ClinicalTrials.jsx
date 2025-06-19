@@ -1,8 +1,9 @@
 import { useState } from "react";
 import data from "../assets/dummy_data.json";
+import Related from "../components/Related";
 
 function ClinicalTrials() {
-  const [showRelated, setShowRelated] = useState(null);
+  const [selectRelated, setSelectRelated] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [selectedPhase, setSelectedPhase] = useState("All");
 
@@ -61,9 +62,11 @@ function ClinicalTrials() {
           <div
             key={index}
             className={`flex flex-col justify-between h-40 p-2.5 hover:bg-white/5 rounded-lg ${
-              showRelated === index ? "bg-white/10 hover:bg-white/10" : ""
+              selectRelated === index ? "bg-white/10 hover:bg-white/10" : ""
             }`}
-            onClick={() => setShowRelated(showRelated === index ? null : index)}
+            onClick={() =>
+              setSelectRelated(selectRelated === index ? null : index)
+            }
           >
             <a
               href={clinical_trial.source}
@@ -93,6 +96,7 @@ function ClinicalTrials() {
           </div>
         ))}
       </div>
+      <Related selectRelated={selectRelated} />
     </>
   );
 }
