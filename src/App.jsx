@@ -1,11 +1,11 @@
-import Render from "./components/Render";
+import Display from "./components/Display";
 import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Render />
+      <Display />
     </>
   );
 }
