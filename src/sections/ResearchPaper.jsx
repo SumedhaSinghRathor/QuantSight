@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import data from "../assets/dummy_data.json";
 
 function ResearchPaper() {
   const [showRelated, setShowRelated] = useState(null);
-  const [sortDirection, setSortDirection] = useState("none");
+  const [expandedAbstracts, setExpandedAbstracts] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     field: null,
     direction: "none",
@@ -38,18 +38,10 @@ function ResearchPaper() {
     });
   }
 
-  let sortIcon, buttonStyle;
-  if (sortDirection === "asc") {
-    sortedPapers.sort((a, b) => a.citation_count - b.citation_count);
-    sortIcon = <i className="bx bx-up-arrow-alt text-xl" />;
-    buttonStyle = "bg-white text-dark-blue";
-  } else if (sortDirection === "desc") {
-    sortedPapers.sort((a, b) => b.citation_count - a.citation_count);
-    sortIcon = <i className="bx bx-down-arrow-alt text-xl" />;
-    buttonStyle = "bg-white text-dark-blue";
-  } else {
-    sortedPapers;
-    sortIcon = <i className="bx bx-up-arrow-alt text-xl" />;
+  function toggleAbstract(index) {
+    setExpandedAbstracts((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
   }
 
   return (
@@ -108,7 +100,21 @@ function ResearchPaper() {
               <b>Author: </b>
               {research_paper.authors.join(", ")}
             </p>
-            <p className="text-xs line-clamp-3">{research_paper.abstract}</p>
+            <div>
+              <p
+                className={`text-xs transition-all ${
+                  expandedAbstracts.includes(index) ? "" : "line-clamp-3"
+                }`}
+              >
+                {research_paper.abstract}
+              </p>
+              <button
+                className="text-sm text-blue-400 mt-1 hover:underline"
+                onClick={() => toggleAbstract(index)}
+              >
+                {expandedAbstracts.includes(index) ? "Show less" : "Read more"}
+              </button>
+            </div>
             <p className="flex justify-between items-center w-full">
               <b>Citations:</b>{" "}
               <span className="py-1 px-2 rounded-xl border border-white">
