@@ -36,13 +36,13 @@ function Related({ researchPaper, leader }) {
                 <p>{paper.journal}</p>
               </div>
               <p className="text-xs line-clamp-2">{paper.abstract}</p>
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between items-center text-sm">
                 <p className="font-bold">Citations:</p>
                 <p className="border px-2 py-1 rounded-full border-dark-blue">
                   {paper.citation_count}
                 </p>
               </div>
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between items-center text-sm">
                 <p className="font-bold">Published Date:</p>
                 <p className="border px-2 py-1 rounded-full border-dark-blue">
                   {paper.published_date}
@@ -83,18 +83,20 @@ function Related({ researchPaper, leader }) {
             </div>
           </div>
 
-          <h3 className="text-base sm:text-lg font-semibold">
-            Published Papers:
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {leader.published_papers.map((paper, idx) => (
-              <span
-                key={idx}
-                className="bg-white text-dark-blue px-3 py-1 rounded-full border border-dark-blue text-sm"
-              >
-                {paper.title}
-              </span>
-            ))}
+          <div className="flex gap-4">
+            <h3 className="text-base sm:text-lg font-semibold">
+              Published Papers:
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {leader.published_papers.map((paper, idx) => (
+                <span
+                  key={idx}
+                  className="bg-white text-dark-blue px-3 py-1 rounded-full border border-dark-blue text-sm"
+                >
+                  {paper.title}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       )}
