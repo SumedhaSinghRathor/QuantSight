@@ -12,6 +12,7 @@ body {
   background-color: var(--color-dark-blue);
   color: var(--color-white);
   padding: 10px;
+  scrollbar-width: none;
 }
 
 @layer {
