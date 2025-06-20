@@ -1,8 +1,8 @@
+import { useState } from "react";
 import ClinicalTrials from "../sections/ClinicalTrials";
 import Leaders from "../sections/Leaders";
 import ResearchPaper from "../sections/ResearchPaper";
 import data from "../assets/dummy_data.json";
-import { useState } from "react";
 
 function Display() {
   const [selected, setSelected] = useState(1);
@@ -36,7 +36,7 @@ function Display() {
         results for {`"${data.search_term}"`}
       </h1>
       <br />
-      <ul className="grid grid-cols-3">
+      <ul className="grid grid-cols-1 md:grid-cols-3">
         <li
           className={`border border-white flex justify-center items-center font-bold w-full text-center p-1 ${
             selected === 1 ? "bg-white text-dark-blue" : "cursor-pointer"
@@ -94,7 +94,7 @@ function Display() {
             </p>
           </div>
         </li>
-      </ul>{" "}
+      </ul>
       {selectedComponent}
     </section>
   );

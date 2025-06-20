@@ -1,9 +1,8 @@
-import React from "react";
 import logo from "/logo.svg";
 
 function Navbar() {
   return (
-    <div className="flex flex-col md:flex-row w-full items-center justify-between select-none">
+    <div className="flex flex-col gap-3 md:flex-row w-full items-center justify-between select-none">
       <div className="flex items-center font-bold">
         <img src={logo} alt="QuantaSight" className="size-15" />
         <h1 className="text-2xl font-mono">QUANTASIGHT</h1>

@@ -99,7 +99,7 @@ function ResearchPaper() {
             <p className="line-clamp-2 font-bold text-xl">
               {research_paper.title}
             </p>
-            <p className="text-md line-clamp-1">
+            <p className="line-clamp-1">
               <b>Author: </b>
               {research_paper.authors.join(", ")}
             </p>
@@ -137,7 +137,11 @@ function ResearchPaper() {
           </div>
         ))}
       </div>
-      <Related selectRelated={selectRelated} />
+      <Related
+        researchPaper={
+          selectRelated === null ? null : sortedPapers[selectRelated]
+        }
+      />
     </>
   );
 }

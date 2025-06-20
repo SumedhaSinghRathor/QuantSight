@@ -48,7 +48,7 @@ function Leaders() {
               setSelectRelated(selectRelated === index ? null : index)
             }
           >
-            <div className="size-30 bg-amber-50 rounded-full"></div>
+            <div className="size-30 bg-amber-50 rounded-full" />
             <div>
               <p className="font-bold text-lg">{leader.name}</p>
               <p>{leader.affiliation}</p>
@@ -67,7 +67,9 @@ function Leaders() {
           </div>
         ))}
       </div>
-      <Related selectRelated={selectRelated} />
+      <Related
+        leader={selectRelated !== null ? sortedCitation[selectRelated] : null}
+      />
     </>
   );
 }
