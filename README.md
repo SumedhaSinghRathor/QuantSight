@@ -27,3 +27,24 @@ Prefer to explore without setup? Check out the live demo:
 🔗 [quantasight.vercel.app](https://quantasight.vercel.app)
 
 ---
+
+## 🔍 Search Results Overview
+The search results are organized into three clearly defined sections, presented in a **tab-based layout** to enhance user familiarity and intuitive navigation. A total search count is prominently displayed at the top for quick reference.
+
+### 📄 Research Papers Tab
+- Users can **sort papers** by number of pages or published date, in both ascending and descending order.
+- Each paper includes a **collapsible abstract** for better readability.
+- Selecting a paper triggers a **related insights panel** at the bottom, showcasing similar publications.
+
+### 🧑‍🔬 Leaders Tab
+- Leaders can be sorted by **citation count** (ascending/descending).
+- Clicking on a leader reveals a toggleable related panel with:
+  - **Associated authors**
+  - **Payments** across various platforms
+  - Titles of their **published research**
+
+### 🧪 Clinical Trials Tab
+- Displays all available trials along with:
+  - Their **phases**
+  - **Status indicators** ("Completed", "Active, not recruiting", "Recruiting") with color-coded tags.
+- A dropdown filter enables quick status-based segmentation of results. 
