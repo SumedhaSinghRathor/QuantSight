@@ -1,4 +1,4 @@
-# QuantSight
+# QuantaSight
 
 
 https://github.com/user-attachments/assets/5e10c420-ac34-4091-adb9-1d7413dc4c90
